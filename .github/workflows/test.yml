@@ -1,0 +1,30 @@
+name: test
+
+on:
+  push:
+   branches: [ nordix ]
+  pull_request:
+    branches: [ nordix ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.16'
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Test
+      run: |
+        make style
+        make vet
+        make gometalinter
+        make build
+        make test
