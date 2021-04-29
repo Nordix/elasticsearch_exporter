@@ -25,6 +25,5 @@ jobs:
       run: |
         make style
         make vet
-        make gometalinter
         make build
         make test
