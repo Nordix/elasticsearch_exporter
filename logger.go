@@ -1,12 +1,12 @@
 package main
 
 import (
+	"io"
 	"os"
+	"strings"
 
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
-	"io"
-	"strings"
 )
 
 func getLogger(loglevel, logoutput, logfmt string) log.Logger {
@@ -48,7 +48,7 @@ func getLogger(loglevel, logoutput, logfmt string) log.Logger {
 	}
 	logger = level.NewFilter(logger, loglevelFilterOpt)
 	logger = log.With(logger,
-		"ts", log.DefaultTimestampUTC,
+		"ts", log.DefaultTimestamp,
 		"caller", log.DefaultCaller,
 	)
 	return logger
